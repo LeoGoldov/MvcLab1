@@ -1,0 +1,11 @@
+﻿@{
+    ViewData["Title"] = "Ошибка";
+}
+
+<div style="text-align: center; padding: 50px;">
+    <h1 style="color: red;">@ViewBag.ErrorMessage</h1>
+    <p>Извините, такой новости не существует.</p>
+    <a href="/News/Latest" style="background-color: blue; color: white; padding: 10px 20px; text-decoration: none; border-radius: 3px;">
+        Вернуться к новостям
+    </a>
+</div>

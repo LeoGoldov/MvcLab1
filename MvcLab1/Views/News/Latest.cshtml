@@ -1,0 +1,39 @@
+﻿@{
+    ViewData["Title"] = "Новости";
+}
+
+<h1>@ViewData["Title"]</h1>
+<p>Всего новостей: @ViewData["NewsCount"]</p>
+
+<!-- Простые хлебные крошки -->
+<div style="margin-bottom: 20px; padding: 10px; background-color: #f0f0f0;">
+    <a href="/">Главная</a> > <span>Новости</span>
+</div>
+
+<!-- Список новостей -->
+@for (int i = 0; i < 5; i++)
+{
+        <div style="border: 1px solid #ccc; margin-bottom: 15px; padding: 15px; border-radius: 5px;">
+            <span style="background-color: #007bff; color: white; padding: 3px 8px; border-radius: 3px;">
+            @ViewBag.NewsCategories[i]
+            </span>
+            <h3>@ViewBag.NewsTitles[i]</h3>
+            <p><strong>Дата:</strong> @ViewBag.NewsDates[i]</p>
+            <p>@ViewBag.NewsSummaries[i]</p>
+            <a href="/News/Article/@(i+1)" style="background-color: green; color: white; padding: 5px 10px; text-decoration: none; border-radius: 3px;">
+                Читать далее
+            </a>
+        </div>
+}
+
+<!-- Простое меню категорий -->
+<div style="margin-top: 30px; padding: 15px; background-color: #f8f9fa;">
+    <h3>Категории:</h3>
+    <p>
+        <a href="/News/Category/City">City</a> |
+        <a href="/News/Category/Science">Science</a> |
+        <a href="/News/Category/Sport">Sport</a> |
+        <a href="/News/Category/Culture">Culture</a> |
+        <a href="/News/Category/Economy">Economy</a>
+    </p>
+</div>

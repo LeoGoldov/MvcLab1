@@ -1,0 +1,36 @@
+﻿@{
+    ViewData["Title"] = "Категория: " + ViewBag.CurrentCategory;
+}
+
+<!-- Простые хлебные крошки -->
+<div style="margin-bottom: 20px; padding: 10px; background-color: #f0f0f0;">
+    <a href="/">Главная</a> > 
+    <a href="/News/Latest">Новости</a> > 
+    <span>@ViewBag.CurrentCategory</span>
+</div>
+
+<h1>Новости категории: @ViewBag.CurrentCategory</h1>
+
+@if (ViewBag.CategoryNews.Count > 0)
+{
+        <p>Найдено новостей: @ViewBag.CategoryNews.Count</p>
+
+    for (int i = 0; i < ViewBag.CategoryNews.Count; i++)
+    {
+                <div style="border: 1px solid #ccc; margin-bottom: 10px; padding: 10px; border-radius: 3px;">
+                    <h3>@ViewBag.CategoryNews[i]</h3>
+                    <p><strong>Дата:</strong> @ViewBag.CategoryDates[i]</p>
+                    
+                    <a href="/News/Article/@(i+1)">Читать</a>
+                </div>
+    }
+}
+else
+{
+        <p>В этой категории пока нет новостей.</p>
+}
+
+<!-- Ссылка назад -->
+<div style="margin-top: 20px;">
+    <a href="/News/Latest">← Вернуться ко всем новостям</a>
+</div>

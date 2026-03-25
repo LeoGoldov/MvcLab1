@@ -1,0 +1,55 @@
+﻿@{
+    ViewData["Title"] = ViewBag.Title;
+}
+
+<!-- хлебные крошки -->
+<div style="margin-bottom: 20px; padding: 10px; background-color: #f0f0f0;">
+    <a href="/">Главная</a> > 
+    <a href="/News/Latest">Новости</a> > 
+    <a href="/News/Category/@ViewBag.Category">@ViewBag.Category</a> > 
+    <span>@ViewBag.Title</span>
+</div>
+
+<!-- Статья -->
+<div style="max-width: 800px; margin: 0 auto;">
+    <h1>@ViewBag.Title</h1>
+
+    <p>
+        <strong>Категория:</strong> @ViewBag.Category |
+        <strong>Дата:</strong> @ViewBag.Date |
+        <strong>Автор:</strong> @ViewBag.Author
+    </p>
+
+    <div style="border-left: 4px solid blue; padding-left: 20px; font-size: 18px;">
+        <p>@ViewBag.Content</p>
+    </div>
+</div>
+
+<!-- Кнопки навигации -->
+<div style="margin-top: 30px; display: flex; justify-content: space-between;">
+    @if (ViewBag.NewsId > 1)
+    {
+            <a href="/News/Article/@(ViewBag.NewsId - 1)" style="background-color: gray; color: white; padding: 10px; text-decoration: none; border-radius: 3px;">
+                ← Предыдущая
+            </a>
+    }
+    else
+    {
+            <span></span>
+    }
+
+    <a href="/News/Latest" style="background-color: blue; color: white; padding: 10px; text-decoration: none; border-radius: 3px;">
+        К списку новостей
+    </a>
+
+    @if (ViewBag.NewsId < 5)
+    {
+            <a href="/News/Article/@(ViewBag.NewsId + 1)" style="background-color: gray; color: white; padding: 10px; text-decoration: none; border-radius: 3px;">
+                Следующая →
+            </a>
+    }
+    else
+    {
+            <span></span>
+    }
+</div>

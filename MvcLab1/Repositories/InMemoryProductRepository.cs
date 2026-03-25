@@ -1,0 +1,92 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using MvcLab1.Models;
+
+namespace MvcLab1.Repositories
+{
+    public class InMemoryProductRepository : IProductRepository
+    {
+        private readonly List<Product> _products;
+        private int _nextId = 1;
+
+        public InMemoryProductRepository()
+        {
+            _products = new List<Product>();
+            SeedData();
+        }
+
+        private void SeedData()
+        {
+            Add(new Product
+            {
+                Name = "Ноутбук ASUS",
+                Price = 75000,
+                Category = "Электроника",
+                Description = "Игровой ноутбук",
+                CreatedDate = DateTime.Now,
+                InStock = true
+            });
+
+            Add(new Product
+            {
+                Name = "Смартфон Samsung",
+                Price = 45000,
+                Category = "Электроника",
+                Description = "Galaxy S23",
+                CreatedDate = DateTime.Now,
+                InStock = true
+            });
+        }
+
+        public IEnumerable<Product> GetAll() => _products;
+
+        // Возвращаем Product (не nullable), как требует интерфейс
+        public Product GetById(int id) => _products.FirstOrDefault(p => p.Id == id);
+
+        public void Add(Product product)
+        {
+            if (product == null)
+                throw new ArgumentNullException(nameof(product));
+
+            product.Id = _nextId++;
+            _products.Add(product);
+        }
+
+        public void Update(Product product)
+        {
+            if (product == null)
+                throw new ArgumentNullException(nameof(product));
+
+            var existing = GetById(product.Id);
+            if (existing != null)
+            {
+                existing.Name = product.Name;
+                existing.Price = product.Price;
+                existing.Category = product.Category;
+                existing.Description = product.Description;
+                existing.InStock = product.InStock;
+                // Не обновляем CreatedDate
+            }
+        }
+
+        public void Delete(int id)
+        {
+            var product = GetById(id);
+            if (product != null)
+                _products.Remove(product);
+        }
+
+        // Метод должен называться точно как в интерфейсе: GetByСategoty
+        // с кириллической "С" и параметром categoty
+        public IEnumerable<Product> GetByСategoty(string categoty)
+        {
+            if (string.IsNullOrEmpty(categoty))
+                return Enumerable.Empty<Product>();
+
+            return _products.Where(p => p.Category.Equals(categoty, StringComparison.OrdinalIgnoreCase));
+        }
+
+        public IEnumerable<Product> GetInStock() => _products.Where(p => p.InStock);
+    }
+}
