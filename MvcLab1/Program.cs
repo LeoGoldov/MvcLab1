@@ -4,6 +4,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IProductRepository, InMemoryProductRepository>();
+builder.Services.AddScoped<IMovieRepository, InMemoryMovieRepository>();
+
 var app = builder.Build();
 
 if (!app.Environment.IsDevelopment())
