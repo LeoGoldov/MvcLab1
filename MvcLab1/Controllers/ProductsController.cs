@@ -92,9 +92,10 @@ namespace MvcLab1.Controllers
             return RedirectToAction(nameof(Index));
         }
         // GET: /Products/Category/Электроника
+        
         public IActionResult Category(string category)
         {
-            var products = _repository.GetByСategoty(category);
+            var products = _repository.GetByCategory(category); 
             ViewBag.Category = category;
             return View(products);
         }

@@ -77,14 +77,13 @@ namespace MvcLab1.Repositories
                 _products.Remove(product);
         }
 
-        // Метод должен называться точно как в интерфейсе: GetByСategoty
-        // с кириллической "С" и параметром categoty
-        public IEnumerable<Product> GetByСategoty(string categoty)
+
+        public IEnumerable<Product> GetByCategory(string category) // Изменено на английскую C
         {
-            if (string.IsNullOrEmpty(categoty))
+            if (string.IsNullOrEmpty(category))
                 return Enumerable.Empty<Product>();
 
-            return _products.Where(p => p.Category.Equals(categoty, StringComparison.OrdinalIgnoreCase));
+            return _products.Where(p => p.Category.Equals(category, StringComparison.OrdinalIgnoreCase));
         }
 
         public IEnumerable<Product> GetInStock() => _products.Where(p => p.InStock);

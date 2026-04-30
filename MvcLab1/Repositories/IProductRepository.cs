@@ -10,8 +10,7 @@ namespace MvcLab1.Repositories
         void Add(Product product);
         void Update(Product product);
         void Delete(int id);
-        IEnumerable<Product> GetByСategoty(string categoty);
-
+        IEnumerable<Product> GetByCategory(string category); 
         IEnumerable<Product> GetInStock();
     }
 }
