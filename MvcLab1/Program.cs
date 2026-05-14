@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;  // ← ЭТО ДОБАВИТЬ!
+using Microsoft.Extensions.Logging;
 using MvcLab1.Data;
 using MvcLab1.Repositories;
 using MvcLab1.Models;
@@ -21,17 +21,17 @@ builder.Services.AddDbContext<AppDbContext>(options =>
         .EnableSensitiveDataLogging()
 );
 
-// ========== СБОРКА ПРИЛОЖЕНИЯ ==========
+// СБОРКА ПРИЛОЖЕНИЯ 
 var app = builder.Build();
 
-// ========== ИНИЦИАЛИЗАЦИЯ БАЗЫ ДАННЫХ ==========
+//ИНИЦИАЛИЗАЦИЯ БАЗЫ ДАННЫХ
 using (var scope = app.Services.CreateScope())
 {
     var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
     await SeedData.InitializeAsync(dbContext);
 }
 
-// ========== КОНФИГУРАЦИЯ MIDDLEWARE ==========
+//КОНФИГУРАЦИЯ MIDDLEWARE
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");

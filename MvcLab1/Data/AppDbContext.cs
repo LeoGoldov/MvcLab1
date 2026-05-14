@@ -3,7 +3,7 @@ using MvcLab1.Models;
 
 namespace MvcLab1.Data;
 
-public class AppDbContext : DbContext  // ← ДОЛЖНО БЫТЬ наследование от DbContext
+public class AppDbContext : DbContext  
 {
     public AppDbContext(DbContextOptions<AppDbContext> options)
         : base(options)

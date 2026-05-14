@@ -38,6 +38,20 @@
                 </div>
             </div>
         </nav>
+        <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+        LINQ-запросы
+    </a>
+    <ul class="dropdown-menu">
+        <li><a class="dropdown-item" asp-controller="Products" asp-action="ByPrice">Фильтр по цене</a></li>
+        <li><a class="dropdown-item" asp-controller="Products" asp-action="TopExpensive">Топ дорогих</a></li>
+        <li><a class="dropdown-item" asp-controller="Products" asp-action="Search">Поиск</a></li>
+        <li><hr class="dropdown-divider"></li>
+        <li><a class="dropdown-item" asp-controller="Products" asp-action="GroupedByCategory">Группировка по категориям</a></li>
+        <li><a class="dropdown-item" asp-controller="Products" asp-action="Statistics">Статистика</a></li>
+        <li><a class="dropdown-item" asp-controller="Products" asp-action="Paginated">Пагинация</a></li>
+    </ul>
+</li>
     </header>
     <div class="container">
         <main role="main" class="pb-3">
